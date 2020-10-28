@@ -23,10 +23,14 @@
             <form action="{{ route('brand.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="">Nome da Marca</label>
-                    <input type="text" name="name" class="form-control" placeholder="Exemplo: Intel">
-                    <small class="form-text text-muted">Coloque um nome unico</small>
-                </div>
+                  <label for="">Titulo da Marca </label>
+                  <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" value="{{ old('name') }}" id="">
+                  @error('name')
+                      <div class="invalid-feedback">
+                          {{ $message }}
+                      </div>
+                  @enderror
+              </div>
                 <button type="submit" class="btn btn-success">Enviar</button>
             </form>
           </div>

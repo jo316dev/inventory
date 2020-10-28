@@ -34,7 +34,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.pages.brands.create');
     }
 
     /**
@@ -45,7 +45,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $brands = $this->brands->create($request->all());
+
+        if(!$brands){
+            return redirect()->back()->with('warning', 'Erro no cadastro');
+        }
+
+        return redirect()->route('brand.index')->with('success', 'Marca cadastrada com sucesso');
     }
 
     /**
@@ -67,7 +73,16 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        
+        if(!$brand = $this->brands->find($id)){
+            return redirect()->back()
+                            ->with('error', 'Houve um erro na consulta');
+        }
+
+
+        return view('admin.pages.brands.edit', compact('brand'));
+
     }
 
     /**
@@ -79,7 +94,14 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!$brand = $this->brands->find($id)){
+            return redirect()->back()
+                            ->with('error', 'Houve um erro na consulta');
+        }
+
+        $brand->update($request->all());
+
+        return redirect()->route('brand.index')->with('success', 'Marca alterada com sucesso');
     }
 
     /**
@@ -90,6 +112,13 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!$brand = $this->brands->find($id)){
+            return redirect()->back()
+                            ->with('error', 'Houve um erro na consulta');
+        }
+
+        $brand->delete();
+
+        return redirect()->route('brand.index')->with('warning', 'Marca deletada com sucesso');
     }
 }

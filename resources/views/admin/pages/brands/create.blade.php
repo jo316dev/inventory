@@ -23,7 +23,7 @@
             <form action="{{ route('brand.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                  <label for="">Titulo da Marca </label>
+                  <label for="">Titulo da Marca php</label>
                   <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="" value="{{ old('name') }}" id="">
                   @error('name')
                       <div class="invalid-feedback">

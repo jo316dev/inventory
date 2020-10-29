@@ -233,8 +233,8 @@ return [
     'menu' => [
       
         [
-            'text' => 'Marcas',
-            'url'  => 'admin/brands',
+            'text' => 'Gestão Central',
+            'url'  => 'admin/management',
         ],
        
     ],

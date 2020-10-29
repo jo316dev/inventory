@@ -4,6 +4,11 @@
 
 Route::prefix('admin')->namespace('Admin')->group(function(){
 
+    Route::prefix('management')->group(function(){
+
+        Route::get('/', 'ManagementController@index')->name('management.index');
+    });
+
     Route::prefix('brands')->group(function(){
 
         Route::get('/', 'BrandController@index')->name('brand.index');
